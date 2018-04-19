@@ -1,4 +1,4 @@
-package com.remindful.core;
+package com.habicus.core;
 
 import org.junit.Ignore;
 import org.junit.Test;
