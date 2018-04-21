@@ -15,15 +15,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.habicus;
+package com.habicus.core.dao.repository;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.habicus.core.model.Goal;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-@SpringBootApplication
-public class CoreApplication {
-
-  public static void main(String[] args) {
-    SpringApplication.run(CoreApplication.class, args);
-  }
-}
+@Repository
+public interface GoalRepository extends JpaRepository<Goal, Long> {}

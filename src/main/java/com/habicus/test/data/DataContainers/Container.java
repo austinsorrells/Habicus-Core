@@ -15,14 +15,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.habicus.repository.DataContainers;
+package com.habicus.test.data.DataContainers;
 
+import com.habicus.test.data.Loader;
 import java.util.List;
 
 /**
- * Every test data table will inherit Container in an effort to genericize the calls to grab
- * all data in the {@link com.habicus.repository.Loader}. This greatly increases the amount
- * of code reuse we can enable when iterating through and loading all the test data into the database.
+ * Every test dao table will inherit Container in an effort to genericize the calls to grab
+ * all dao in the {@link Loader}. This greatly increases the amount
+ * of code reuse we can enable when iterating through and loading all the test dao into the database.
  * @param <T>
  */
 public interface Container<T> {

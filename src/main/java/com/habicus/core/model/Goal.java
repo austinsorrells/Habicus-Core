@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.habicus.core.entities;
+package com.habicus.core.model;
 
 
 import javax.persistence.Entity;

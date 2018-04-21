@@ -15,17 +15,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.habicus.repository.DataContainers;
+package com.habicus.test.data.DataContainers;
 
 
-import com.habicus.core.entities.Goal;
+import com.habicus.core.model.Goal;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/** Allows a container to hold a list of users and map to standard POJO */
+/** Allows a container to hold a list of user and map to standard POJO */
 @XmlRootElement(name = "GoalContainer")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class GoalContainer implements Container {

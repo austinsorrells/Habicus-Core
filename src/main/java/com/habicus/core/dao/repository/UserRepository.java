@@ -15,11 +15,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.habicus.core.data;
+package com.habicus.core.dao.repository;
 
-import com.habicus.core.entities.Goal;
+import com.habicus.core.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GoalRepository extends JpaRepository<Goal, Long> {}
+public interface UserRepository extends JpaRepository<User, Long> {}
