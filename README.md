@@ -27,7 +27,7 @@ Windows, OS X, Linux
 
 ## Usage example
 
-Are you tired of writing down goals only to fail days or weeks later? Habitate is a P2P accountability tool that puts financials on the line to ensure you achieve your goals at the interval you desire. Need an extra boost? Habitate enables you to add an additional verifier to your account so they can mark off that your goal for that day was completed in time. Failing to do so, the accountability user will receive the funds you pledged to that goal. 
+Are you tired of writing down goals only to fail days or weeks later? Habicus is a P2P accountability tool that puts financials on the line to ensure you achieve your goals at the interval you desire. Need an extra boost? Habicus enables you to add an additional verifier to your account so they can mark off that your goal for that day was completed in time. Failing to do so, the accountability user will receive the funds you pledged to that goal. 
 
 ## Development setup
 
