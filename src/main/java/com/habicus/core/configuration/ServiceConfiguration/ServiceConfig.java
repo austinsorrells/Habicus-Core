@@ -20,16 +20,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.core.controller.main;
+package com.habicus.core.configuration.ServiceConfiguration;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.habicus.core.service.Goal.GoalService;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@RestController
-public class HabicusMain {
+@Configuration
+public class ServiceConfig {
 
-  @RequestMapping("/")
-  public String index() {
-    return "Welcome To Habicus!";
+  @Bean
+  public GoalService goalService() {
+    return new GoalService();
   }
 }

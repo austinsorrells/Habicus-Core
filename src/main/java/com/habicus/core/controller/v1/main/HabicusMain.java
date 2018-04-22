@@ -20,21 +20,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.core.service.Goal;
+package com.habicus.core.controller.v1.main;
 
-import com.habicus.core.dao.repository.GoalRepository;
-import com.habicus.core.model.Goal;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
-public class GoalService {
+@RestController
+public class HabicusMain {
 
-  @Autowired private GoalRepository goalRepository;
-
-  public List<Goal> retrieveGoalsByUserId(Long id) {
-    List<Goal> goals = goalRepository.findGoalsByUserId(id);
-    return goals;
+  @RequestMapping("/")
+  public String index() {
+    return "Welcome To Habicus!";
   }
 }
