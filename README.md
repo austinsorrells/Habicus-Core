@@ -1,3 +1,4 @@
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/Habicus/Habicus-Core-Web.png?columns=all)](https://waffle.io/Habicus/Habicus-Core-Web?utm_source=badge)
 
 
 <p align="center">
