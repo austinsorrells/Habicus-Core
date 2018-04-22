@@ -1,4 +1,10 @@
 /*
+ _   _       _     _
+| | | | __ _| |__ (_) ___ _   _ ___
+| |_| |/ _` | '_ \| |/ __| | | / __|
+|  _  | (_| | |_) | | (__| |_| \__ \
+|_| |_|\__,_|_.__/|_|\___|\__,_|___/
+
  * This file is part of the Habicus Core Platform (https://github.com/Habicus/Habicus-Core).
  * Copyright (c) 2018 Habicus Core
  *
@@ -14,9 +20,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.habicus.core.model;
-
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,15 +36,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "goal")
 public class Goal {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Id @GeneratedValue private Long id;
 
   private String title;
 
   private String description;
 
-  @XmlElement(name="accountable")
+  @XmlElement(name = "accountable")
   private String accountability;
 
   private String interval;

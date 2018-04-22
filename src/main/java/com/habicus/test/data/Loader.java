@@ -1,4 +1,10 @@
 /*
+ _   _       _     _
+| | | | __ _| |__ (_) ___ _   _ ___
+| |_| |/ _` | '_ \| |/ __| | | / __|
+|  _  | (_| | |_) | | (__| |_| \__ \
+|_| |_|\__,_|_.__/|_|\___|\__,_|___/
+
  * This file is part of the Habicus Core Platform (https://github.com/Habicus/Habicus-Core).
  * Copyright (c) 2018 Habicus Core
  *
@@ -14,7 +20,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.habicus.test.data;
 
 import static java.lang.Class.*;
@@ -96,7 +101,8 @@ public class Loader implements ApplicationListener<ApplicationReadyEvent> {
 
     try {
       return parseFile(
-          fileResource, forName(CONTAINER_PATH + "." + normalizeFileName(fileResource.getFilename())));
+          fileResource,
+          forName(CONTAINER_PATH + "." + normalizeFileName(fileResource.getFilename())));
     } catch (ClassNotFoundException e) {
       LOGGER.log(Level.SEVERE, "Unable to find the specified dao container class");
       System.exit(CoreConstants.SYSTEM_EXIT_ERROR);
@@ -117,9 +123,9 @@ public class Loader implements ApplicationListener<ApplicationReadyEvent> {
   }
 
   /**
-   * Loads up any test dao from resources and stores into embedded DB for test env
-   * Containers referring to the test environment dao structure, which can be understood more here
-   * {@link Container}
+   * Loads up any test dao from resources and stores into embedded DB for test env Containers
+   * referring to the test environment dao structure, which can be understood more here {@link
+   * Container}
    *
    * @throws IOException
    */
@@ -130,10 +136,10 @@ public class Loader implements ApplicationListener<ApplicationReadyEvent> {
     /**
      * Main Persistence Logic:
      *
-     * <p>Retrieve dao from each file in the resources directory and put into a list Iterate
-     * through each item of the list, cast it to a Container object The getAll operation will
-     * retrieve all sub-elements associated with this dao type Put all subelements into a list and
-     * save each individual element into the database
+     * <p>Retrieve dao from each file in the resources directory and put into a list Iterate through
+     * each item of the list, cast it to a Container object The getAll operation will retrieve all
+     * sub-elements associated with this dao type Put all subelements into a list and save each
+     * individual element into the database
      */
     Arrays.stream(resources)
         .flatMap(r -> (ingestFromFile(r)).getAll().stream())
