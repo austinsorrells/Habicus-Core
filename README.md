@@ -13,9 +13,9 @@
 	<div style="display: inline-block">
 		<img src="https://img.shields.io/badge/License-GPL-orange.svg" />
 	</div>
-	[![Waffle.io - Columns and their card count](https://badge.waffle.io/Habicus/Habicus-Core-Web.png?columns=all)](https://waffle.io/Habicus/Habicus-Core-Web?utm_source=badge)
 </div>
 
+	[![Waffle.io - Columns and their card count](https://badge.waffle.io/Habicus/Habicus-Core-Web.png?columns=all)](https://waffle.io/Habicus/Habicus-Core-Web?utm_source=badge)
 
 Habicus is a platform for people who have a desire to reach their goals. Habicus is a data-proven accountability system that utilizes concepts from the fields of behavioral economics and beahvioral psychology to help people realize their full potential. Unlike existing tools, Habicus offers peer-to-peer and self-accountability options and does so in an easier to manage fashion.
 
