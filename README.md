@@ -1,4 +1,4 @@
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/Habicus/Habicus-Core-Web.png?columns=all)](https://waffle.io/Habicus/Habicus-Core-Web?utm_source=badge)
+
 
 
 <p align="center">
@@ -13,6 +13,7 @@
 	<div style="display: inline-block">
 		<img src="https://img.shields.io/badge/License-GPL-orange.svg" />
 	</div>
+	[![Waffle.io - Columns and their card count](https://badge.waffle.io/Habicus/Habicus-Core-Web.png?columns=all)](https://waffle.io/Habicus/Habicus-Core-Web?utm_source=badge)
 </div>
 
 
