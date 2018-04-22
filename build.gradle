@@ -12,10 +12,21 @@ buildscript {
 	}
 }
 
+plugins {
+	id "com.diffplug.gradle.spotless" version "3.10.0"
+}
+
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'maven'
+
+spotless {
+	java {
+		googleJavaFormat()
+		licenseHeaderFile 'habicus.license.java'
+	}
+}
 
 group = 'com.remindful'
 version = '1.0.0-SNAPSHOT'
@@ -44,3 +55,5 @@ bootRun {
 	systemProperties System.properties
 	jvmArgs=["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"]
 }
+
+tasks.bootRun.dependsOn build
