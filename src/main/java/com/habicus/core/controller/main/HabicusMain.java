@@ -15,11 +15,18 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.habicus.core.data;
+package com.habicus.core.controller.main;
 
-import com.habicus.core.entities.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {}
+@RestController
+public class HabicusMain {
+
+  @RequestMapping("/")
+  public String index() {
+    return "Welcome To Habicus!";
+  }
+
+}
+

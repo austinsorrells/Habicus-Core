@@ -15,31 +15,35 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.habicus.core.api;
+package com.habicus.test.data.DataContainers;
 
-import com.habicus.core.data.GoalRepository;
-import com.habicus.core.data.UserRepository;
-import com.habicus.core.entities.Goal;
-import com.habicus.core.entities.User;
-import java.util.ArrayList;
+import com.habicus.core.model.User;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-@RestController
-public class HabicusMain {
+/** Allows a container to hold a list of user and map to standard POJO */
+@XmlRootElement(name = "UserContainer")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class UserContainer implements Container {
 
-  @Autowired
-  UserRepository userRepo;
+  public UserContainer() {}
 
-  @Autowired
-  GoalRepository goalRepo;
+  @XmlElement(name = "user")
+  private List<User> users;
 
-  @RequestMapping("/")
-  public String index() {
-    return "Welcome To Habicus!";
+  public List<User> getUsers() {
+    return users;
   }
 
-}
+  public void setUsers(List<User> users) {
+    this.users = users;
+  }
 
+  @Override
+  public List<User> getAll() {
+    return users;
+  }
+}
