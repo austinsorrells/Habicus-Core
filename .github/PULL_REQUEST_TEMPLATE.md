@@ -1,9 +1,10 @@
 ![](https://camo.githubusercontent.com/cf373500dfe17773807191f7fb730ea7ea4b959d/68747470733a2f2f692e696d6775722e636f6d2f5878585a6b6d4f2e706e67)
 
-## Backlog & Current Sprint ([View Backlog Here](https://waffle.io/Habicus/Habicus-Core-Web))
 
-## Ticket Reference ([View Current Issues Here](https://github.com/Habicus/Habicus-Core/issues))
+#### Ticket Reference ([View Current Issues Here](https://github.com/Habicus/Habicus-Core/issues))
 My Issue Number Connects #
+
+##### Backlog & Current Sprint ([View Backlog Here](https://waffle.io/Habicus/Habicus-Core-Web))
 
 
 ##### Core Reviewers:
