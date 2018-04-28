@@ -20,18 +20,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.test.data.DataContainers;
+package com.habicus.seeder.xmlloader.data.DataContainers;
 
-import com.habicus.test.data.Loader;
+import com.habicus.core.model.User;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * Every test dao table will inherit Container in an effort to genericize the calls to grab all dao
- * in the {@link Loader}. This greatly increases the amount of code reuse we can enable when
- * iterating through and loading all the test dao into the database.
- *
- * @param <T>
- */
-public interface Container<T> {
-  public List<T> getAll();
+/** Allows a container to hold a list of user and map to standard POJO */
+@XmlRootElement(name = "UserContainer")
+@XmlAccessorType(XmlAccessType.FIELD)
+@Deprecated
+public class UserContainer implements Container {
+
+  public UserContainer() {}
+
+  @XmlElement(name = "user")
+  private List<User> users;
+
+  public List<User> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<User> users) {
+    this.users = users;
+  }
+
+  @Override
+  public List<User> getAll() {
+    return users;
+  }
 }

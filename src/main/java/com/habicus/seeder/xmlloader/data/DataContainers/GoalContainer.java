@@ -20,9 +20,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.test.data.DataContainers;
+package com.habicus.seeder.xmlloader.data.DataContainers;
 
-import com.habicus.core.model.User;
+import com.habicus.core.model.Goal;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -30,25 +30,26 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /** Allows a container to hold a list of user and map to standard POJO */
-@XmlRootElement(name = "UserContainer")
+@XmlRootElement(name = "GoalContainer")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class UserContainer implements Container {
+@Deprecated
+public class GoalContainer implements Container {
 
-  public UserContainer() {}
+  public GoalContainer() {}
 
-  @XmlElement(name = "user")
-  private List<User> users;
+  @XmlElement(name = "goal")
+  private List<Goal> goals;
 
-  public List<User> getUsers() {
-    return users;
+  public List<Goal> getGoals() {
+    return goals;
   }
 
-  public void setUsers(List<User> users) {
-    this.users = users;
+  public void setGoals(List<Goal> goals) {
+    this.goals = goals;
   }
 
   @Override
-  public List<User> getAll() {
-    return users;
+  public List<Goal> getAll() {
+    return goals;
   }
 }

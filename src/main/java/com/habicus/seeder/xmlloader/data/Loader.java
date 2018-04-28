@@ -20,12 +20,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.test.data;
+package com.habicus.seeder.xmlloader.data;
 
 import static java.lang.Class.*;
 
 import com.habicus.core.configuration.CoreConstants;
-import com.habicus.test.data.DataContainers.Container;
+import com.habicus.seeder.xmlloader.data.DataContainers.Container;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -35,17 +35,15 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationListener;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.*;
-import org.springframework.stereotype.Component;
 
 /**
  * Launches at application boot-time to inject any user-defined test dao and stores into test
  * database automatically.
  */
-@Component
-public class Loader implements ApplicationListener<ApplicationReadyEvent> {
+@Deprecated
+public class Loader {
 
   private static final Logger LOGGER = Logger.getLogger(Loader.class.getName());
 
@@ -110,16 +108,15 @@ public class Loader implements ApplicationListener<ApplicationReadyEvent> {
     }
   }
 
-  @Override
+  /**
+   * Initial method of preloading XML -> SQL dynamically with JaxB @Deprecated to move into
+   * schema-based loading
+   *
+   * @param event
+   */
+  @Deprecated
   public void onApplicationEvent(ApplicationReadyEvent event) {
-    LOGGER.log(Level.INFO, "Preparing to load dao into database");
-
-    try {
-      loadTestContainers();
-    } catch (IOException e) {
-      LOGGER.log(Level.INFO, "Unable to store user dao");
-      e.printStackTrace();
-    }
+    LOGGER.log(Level.INFO, "Loader Disabled");
   }
 
   /**

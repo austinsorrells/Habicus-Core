@@ -20,13 +20,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.test.data;
+package com.habicus.seeder.xmlloader.data;
 
 import com.habicus.core.dao.repository.GoalRepository;
 import com.habicus.core.dao.repository.UserRepository;
 import com.habicus.core.model.Goal;
 import com.habicus.core.model.User;
-import com.habicus.test.data.DataContainers.Container;
+import com.habicus.seeder.xmlloader.data.DataContainers.Container;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -49,6 +49,7 @@ import org.springframework.stereotype.Component;
  *       com.habicus.test.data.DataContainers}
  * </ol>
  */
+@Deprecated
 @Component
 public class DataLoaderRegistrar {
 
