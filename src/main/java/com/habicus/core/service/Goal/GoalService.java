@@ -23,7 +23,7 @@
 package com.habicus.core.service.Goal;
 
 import com.habicus.core.dao.repository.GoalRepository;
-import com.habicus.core.model.Goal;
+import com.habicus.core.model.Goals;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,8 +33,7 @@ public class GoalService {
 
   @Autowired private GoalRepository goalRepository;
 
-  public List<Goal> retrieveGoalsByUserId(Long id) {
-    List<Goal> goals = goalRepository.findGoalsByUserId(id);
-    return goals;
+  public List<Goals> retrieveGoalsByUserId(Long id) {
+    return goalRepository.findAll();
   }
 }
