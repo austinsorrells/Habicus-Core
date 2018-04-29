@@ -2,22 +2,23 @@
 
 
 #### Ticket Reference ([View Current Issues Here](https://github.com/Habicus/Habicus-Core/issues))
-My Issue Number Connects #
 
 ##### Backlog & Current Sprint ([View Backlog Here](https://waffle.io/Habicus/Habicus-Core-Web))
+
+My Issue Number Connects #
 
 
 ##### Core Reviewers:
 @Habicus/core-team
 
 ##### Merge Owner:
-@mweser
-@Habicus/core-team
 @austinsorrells
 @schachte
 
 ## Status
-**Ready/WIP/Blocked**
+**Ready**
+**Work In Progress (Do Not Merge)**
+**Blocked**
 
 ## Description
 A few sentences describing the overall goals of the pull request's commits.
