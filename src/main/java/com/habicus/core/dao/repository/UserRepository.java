@@ -29,5 +29,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+<<<<<<< master
   Optional<User> findByEmail(String email);
+=======
+  User findUserByUserName(String userName);
+>>>>>>> Adding initial security
 }

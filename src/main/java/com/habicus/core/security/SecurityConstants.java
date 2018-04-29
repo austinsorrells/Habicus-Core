@@ -20,22 +20,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus;
+package com.habicus.core.security;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-@SpringBootApplication
-public class CoreApplication {
-
-  @Bean
-  public BCryptPasswordEncoder bCryptPasswordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(CoreApplication.class, args);
-  }
+public class SecurityConstants {
+  public static final String SECRET = "SecretKeyToGenJWTs";
+  public static final long EXPIRATION_TIME = 864_000_000; // 10 days
+  public static final String TOKEN_PREFIX = "Bearer ";
+  public static final String HEADER_STRING = "Authorization";
+  public static final String SIGN_UP_URL = "/api/v1/user/sign-up";
 }

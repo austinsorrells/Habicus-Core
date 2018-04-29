@@ -24,6 +24,7 @@ package com.habicus.core.service.User;
 
 import com.habicus.core.dao.repository.UserRepository;
 import com.habicus.core.model.User;
+<<<<<<< master
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,33 @@ public class UserService {
         .map(Optional::get)
         .findFirst()
         .orElseThrow(() -> new RuntimeException("User does not exist!"));
+=======
+import java.util.Collections;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service("UserService")
+public class UserService implements UserDetailsService {
+  @Autowired private UserRepository userRepository;
+
+  public User FindByUserName(String userName) {
+    return new User();
+  }
+
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    User user = userRepository.findUserByUserName(username);
+    if (user == null) throw new UsernameNotFoundException(username);
+
+    return new org.springframework.security.core.userdetails.User(
+        user.getUserName(), user.getEncryptedPassword(), Collections.emptyList());
+  }
+
+  public void save(User user) {
+    userRepository.save(user);
+>>>>>>> Adding initial security
   }
 }
