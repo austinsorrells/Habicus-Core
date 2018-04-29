@@ -41,7 +41,6 @@ public class GoalMetrics {
   private String moneyMadeOnGoal;
   private Integer timeUntilDueDate;
   private int goalsGoalId;
-  private int goalsUsersUserId;
 
   @Id
   @Column(name = "goal_metrics_id")
@@ -103,16 +102,6 @@ public class GoalMetrics {
     this.goalsGoalId = goalsGoalId;
   }
 
-  @Id
-  @Column(name = "goals_users_user_id")
-  public int getGoalsUsersUserId() {
-    return goalsUsersUserId;
-  }
-
-  public void setGoalsUsersUserId(int goalsUsersUserId) {
-    this.goalsUsersUserId = goalsUsersUserId;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -124,7 +113,6 @@ public class GoalMetrics {
     GoalMetrics that = (GoalMetrics) o;
     return goalMetricsId == that.goalMetricsId
         && goalsGoalId == that.goalsGoalId
-        && goalsUsersUserId == that.goalsUsersUserId
         && Objects.equals(goalComplete, that.goalComplete)
         && Objects.equals(goalInProgress, that.goalInProgress)
         && Objects.equals(moneyMadeOnGoal, that.moneyMadeOnGoal)
@@ -140,7 +128,6 @@ public class GoalMetrics {
         goalInProgress,
         moneyMadeOnGoal,
         timeUntilDueDate,
-        goalsGoalId,
-        goalsUsersUserId);
+        goalsGoalId);
   }
 }

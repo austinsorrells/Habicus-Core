@@ -23,17 +23,48 @@
 package com.habicus.core.service.Goal;
 
 import com.habicus.core.dao.repository.GoalRepository;
+import com.habicus.core.dao.repository.UserRepository;
 import com.habicus.core.model.Goals;
-import java.util.List;
+import com.habicus.core.model.Users;
+import com.habicus.core.service.User.UserService;
+import com.habicus.core.service.User.UserService.NonExistentUserException;
+import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GoalService {
 
+  // Repository definitions
   @Autowired private GoalRepository goalRepository;
+  @Autowired private UserRepository userRepository;
 
-  public List<Goals> retrieveGoalsByUserId(Long id) {
-    return goalRepository.findAll();
+  // Service definitions
+  @Autowired private UserService userService;
+
+  public void testSave() throws NonExistentUserException {
+    Users user = new Users();
+    user.setDob(new Timestamp(System.currentTimeMillis()));
+    user.setEmail("email@gmail.com");
+    user.setGender("male");
+    user.setPassword("pass");
+    user.setUserId(4);
+    user.setUsername("username");
+    userRepository.save(user);
+
+    Goals goal = new Goals();
+    goal.setDescription("This is a demo goal");
+    goal.setDueDate(new Timestamp(System.currentTimeMillis()));
+    goal.setGoalComplete("false");
+    goal.setGoalId(5);
+    goal.setGoalInterval("daily");
+    goal.setLabelColor("green");
+    goal.setTaskAmount(1);
+    goal.setTitle("tester Goal");
+    goal.setPledgeAmount(5.6);
+    goal.setUsersUserId(userService.retrieveUserByEmail("email@gmail.com").getUserId());
+
+    goalRepository.save(goal);
+    System.out.println("Complete!");
   }
 }

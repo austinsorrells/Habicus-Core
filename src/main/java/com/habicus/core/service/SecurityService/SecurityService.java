@@ -20,9 +20,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.core;
+package com.habicus.core.service.SecurityService;
 
-public class tester {
+import org.springframework.stereotype.Service;
 
-  public static void main(String[] args) {}
-}
+@Service
+public class SecurityService {}

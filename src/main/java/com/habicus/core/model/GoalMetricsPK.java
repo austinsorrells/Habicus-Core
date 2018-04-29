@@ -31,7 +31,6 @@ public class GoalMetricsPK implements Serializable {
 
   private int goalMetricsId;
   private int goalsGoalId;
-  private int goalsUsersUserId;
 
   @Column(name = "goal_metrics_id")
   @Id
@@ -53,16 +52,6 @@ public class GoalMetricsPK implements Serializable {
     this.goalsGoalId = goalsGoalId;
   }
 
-  @Column(name = "goals_users_user_id")
-  @Id
-  public int getGoalsUsersUserId() {
-    return goalsUsersUserId;
-  }
-
-  public void setGoalsUsersUserId(int goalsUsersUserId) {
-    this.goalsUsersUserId = goalsUsersUserId;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -72,14 +61,12 @@ public class GoalMetricsPK implements Serializable {
       return false;
     }
     GoalMetricsPK that = (GoalMetricsPK) o;
-    return goalMetricsId == that.goalMetricsId
-        && goalsGoalId == that.goalsGoalId
-        && goalsUsersUserId == that.goalsUsersUserId;
+    return goalMetricsId == that.goalMetricsId && goalsGoalId == that.goalsGoalId;
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(goalMetricsId, goalsGoalId, goalsUsersUserId);
+    return Objects.hash(goalMetricsId, goalsGoalId);
   }
 }

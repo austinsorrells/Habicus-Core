@@ -37,7 +37,7 @@ public class Goals {
   private int goalId;
   private String title;
   private String description;
-  private String interval;
+  private String goalInterval;
   private int usersUserId;
   private int taskAmount;
   private Timestamp dueDate;
@@ -46,7 +46,7 @@ public class Goals {
   private String goalComplete;
 
   @Id
-  @Column(name = "goal_id")
+  @Column(name = "goal_id", unique = true)
   public int getGoalId() {
     return goalId;
   }
@@ -77,12 +77,12 @@ public class Goals {
 
   @Basic
   @Column(name = "goal_interval")
-  public String getInterval() {
-    return interval;
+  public String getGoalInterval() {
+    return goalInterval;
   }
 
-  public void setInterval(String interval) {
-    this.interval = interval;
+  public void setGoalInterval(String goalInterval) {
+    this.goalInterval = goalInterval;
   }
 
   @Id
@@ -159,7 +159,7 @@ public class Goals {
         && taskAmount == goals.taskAmount
         && Objects.equals(title, goals.title)
         && Objects.equals(description, goals.description)
-        && Objects.equals(interval, goals.interval)
+        && Objects.equals(goalInterval, goals.goalInterval)
         && Objects.equals(dueDate, goals.dueDate)
         && Objects.equals(labelColor, goals.labelColor)
         && Objects.equals(pledgeAmount, goals.pledgeAmount)
@@ -173,7 +173,7 @@ public class Goals {
         goalId,
         title,
         description,
-        interval,
+        goalInterval,
         usersUserId,
         taskAmount,
         dueDate,

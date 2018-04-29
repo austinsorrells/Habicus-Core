@@ -2,12 +2,9 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
   <persistence-unit name="HabicusPersistence">
-    <class>com.habicus.core.model.GoalMetrics</class>
-    <class>com.habicus.core.model.Goal</class>
-    <class>com.habicus.core.model.User</class>
     <class>com.habicus.core.model.Goals</class>
-    <class>com.habicus.core.model.Metrics</class>
     <class>com.habicus.core.model.Users</class>
+    <class>com.habicus.core.model.GoalMetrics</class>
     <properties>
       <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/habicus"/>
       <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>

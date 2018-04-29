@@ -22,4 +22,34 @@
  */
 package com.habicus.core.service.User;
 
-public class UserService {}
+import com.habicus.core.dao.repository.UserRepository;
+import com.habicus.core.model.Users;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class UserService {
+
+  @Autowired UserRepository userRepository;
+
+  public Users retrieveUserByEmail(String email) throws NonExistentUserException {
+    Users requestedUser = userRepository.findByEmail(email);
+
+    if (requestedUser == null) {
+      throw new NonExistentUserException("Error: The requested user does not exist", email);
+    }
+    return requestedUser;
+  }
+
+  public class NonExistentUserException extends Exception {
+    public NonExistentUserException() {
+      super();
+    }
+
+    public NonExistentUserException(String err) {
+      super(err);
+    }
+
+    public NonExistentUserException(String err, String email) {
+      super(err + " : " + email);
+    }
+  }
+}
