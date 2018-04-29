@@ -30,6 +30,12 @@ public class UserService {
 
   @Autowired UserRepository userRepository;
 
+  /**
+   * Allows searching for a user by their associated email (PK)
+   * @param email
+   * @return
+   * @throws NonExistentUserException
+   */
   public Users retrieveUserByEmail(String email) throws NonExistentUserException {
     Users requestedUser = userRepository.findByEmail(email);
 

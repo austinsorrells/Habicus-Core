@@ -23,7 +23,6 @@
 package com.habicus.core.controller.v1.goal;
 
 import com.habicus.core.service.Goal.GoalService;
-import com.habicus.core.service.User.UserService.NonExistentUserException;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,11 +43,8 @@ public class GoalController {
 
   @RequestMapping("/tester")
   public String testSave() {
-    try {
-      goalService.testSave();
-      return "Saved";
-    } catch (NonExistentUserException e) {
-      return "The user you are trying to save does not exist!";
-    }
+    goalService.testSave();
+    LOGGER.info("Test item saved");
+    return "Saved";
   }
 }
