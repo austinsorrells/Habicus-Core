@@ -32,6 +32,7 @@ public class UserService {
 
   /**
    * Allows searching for a user by their associated email (PK)
+   *
    * @param email
    * @return
    * @throws NonExistentUserException

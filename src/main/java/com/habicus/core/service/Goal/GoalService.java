@@ -24,10 +24,7 @@ package com.habicus.core.service.Goal;
 
 import com.habicus.core.dao.repository.GoalRepository;
 import com.habicus.core.dao.repository.UserRepository;
-import com.habicus.core.model.Goals;
-import com.habicus.core.model.Users;
 import com.habicus.core.service.User.UserService;
-import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,28 +37,4 @@ public class GoalService {
 
   // Service definitions
   @Autowired private UserService userService;
-
-  public void testSave() {
-    Users user = new Users();
-    Goals goal = new Goals();
-
-    user.setDob(new Timestamp(System.currentTimeMillis()));
-    user.setEmail("email@gmail.com");
-    user.setGender("male");
-    user.setPassword("pass");
-    user.setUserId(4);
-    user.setUsername("username");
-    userRepository.save(user);
-
-    goal.setDescription("This is a demo goal");
-    goal.setDueDate(new Timestamp(System.currentTimeMillis()));
-    goal.setGoalComplete("false");
-    goal.setGoalInterval("daily");
-    goal.setLabelColor("green");
-    goal.setTaskAmount(1);
-    goal.setTitle("tester Goal");
-    goal.setPledgeAmount(5.6);
-    goal.setUsersUserId(user.getUserId());
-    goalRepository.save(goal);
-  }
 }

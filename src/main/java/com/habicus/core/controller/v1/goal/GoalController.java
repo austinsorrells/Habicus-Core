@@ -40,11 +40,4 @@ public class GoalController {
   public void setGoalService(GoalService goalService) {
     this.goalService = goalService;
   }
-
-  @RequestMapping("/tester")
-  public String testSave() {
-    goalService.testSave();
-    LOGGER.info("Test item saved");
-    return "Saved";
-  }
 }
