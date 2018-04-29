@@ -20,31 +20,46 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.core.dao.repository;
+package com.habicus.core.exception.API;
 
-import com.habicus.core.model.Goals;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Repository
-public interface GoalRepository extends JpaRepository<Goals, Long> {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class FieldErrorResource {
+  private String resource;
+  private String field;
+  private String code;
+  private String message;
 
-  /**
-   * Allows retrieval of all {@link Goals} that are associated with a particular {@link
-   * com.habicus.core.model.Users}
-   *
-   * @param userId
-   * @return
-   */
-  Optional<List<Goals>> getGoalsByUsersUserId(int userId);
+  public String getResource() {
+    return resource;
+  }
 
-  /**
-   * Get a singular {@link Goals} that is associated with a goal id that is stored as metadata
-   *
-   * @param goalId
-   * @return
-   */
-  Optional<Goals> getGoalsByGoalId(int goalId);
+  public void setResource(String resource) {
+    this.resource = resource;
+  }
+
+  public String getField() {
+    return field;
+  }
+
+  public void setField(String field) {
+    this.field = field;
+  }
+
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
 }

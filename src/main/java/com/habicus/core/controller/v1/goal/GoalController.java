@@ -22,16 +22,28 @@
  */
 package com.habicus.core.controller.v1.goal;
 
+import com.habicus.core.exception.API.InvalidRequestException;
+import com.habicus.core.exception.NoGoalsFoundException;
+import com.habicus.core.model.Goals;
 import com.habicus.core.model.User;
 import com.habicus.core.service.Goal.GoalService;
+import java.util.List;
+import java.util.Optional;
 import com.habicus.core.service.User.UserService;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/goal")
+@ControllerAdvice
+@RequestMapping("/api/v1")
 public class GoalController {
 
   private static final Logger LOGGER = Logger.getLogger(GoalController.class.getName());
@@ -42,6 +54,26 @@ public class GoalController {
   @Autowired
   public void setGoalService(GoalService goalService) {
     this.goalService = goalService;
+  }
+
+  /**
+   * Allows retrieval by a single userId for getting goals
+   *
+   * @param userId
+   * @return
+   * @throws NoGoalsFoundException
+   */
+  @ExceptionHandler(NoGoalsFoundException.class)
+  @GetMapping("/goal/{userId}")
+  public ResponseEntity<List<Goals>> getGoalsByUserId(@PathVariable("userId") int userId)
+      throws NoGoalsFoundException {
+
+    Optional<List<Goals>> goalList = goalService.retrieveGoalsByUserId(userId);
+    if (!goalList.isPresent()) {
+      throw new InvalidRequestException(
+          String.format("No goals found for requesting user: " + userId), HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>(goalList.get(), HttpStatus.OK);
   }
 
   @Autowired

@@ -20,31 +20,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.core.dao.repository;
+package com.habicus.core.exception;
 
-import com.habicus.core.model.Goals;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-@Repository
-public interface GoalRepository extends JpaRepository<Goals, Long> {
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class NoGoalsFoundException extends RuntimeException {
 
-  /**
-   * Allows retrieval of all {@link Goals} that are associated with a particular {@link
-   * com.habicus.core.model.Users}
-   *
-   * @param userId
-   * @return
-   */
-  Optional<List<Goals>> getGoalsByUsersUserId(int userId);
+  public NoGoalsFoundException() {
+    super();
+  }
 
-  /**
-   * Get a singular {@link Goals} that is associated with a goal id that is stored as metadata
-   *
-   * @param goalId
-   * @return
-   */
-  Optional<Goals> getGoalsByGoalId(int goalId);
+  public NoGoalsFoundException(String message) {
+    super(message);
+  }
 }
