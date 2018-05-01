@@ -30,7 +30,7 @@ import javax.persistence.Id;
 public class GoalMetricsPK implements Serializable {
 
   private int goalMetricsId;
-  private int goalsGoalId;
+  private int goalGoalId;
 
   @Column(name = "goal_metrics_id")
   @Id
@@ -42,14 +42,14 @@ public class GoalMetricsPK implements Serializable {
     this.goalMetricsId = goalMetricsId;
   }
 
-  @Column(name = "goals_goal_id")
+  @Column(name = "goal_goal_id")
   @Id
-  public int getGoalsGoalId() {
-    return goalsGoalId;
+  public int getGoalGoalId() {
+    return goalGoalId;
   }
 
-  public void setGoalsGoalId(int goalsGoalId) {
-    this.goalsGoalId = goalsGoalId;
+  public void setGoalGoalId(int goalsGoalId) {
+    this.goalGoalId = goalsGoalId;
   }
 
   @Override
@@ -61,12 +61,12 @@ public class GoalMetricsPK implements Serializable {
       return false;
     }
     GoalMetricsPK that = (GoalMetricsPK) o;
-    return goalMetricsId == that.goalMetricsId && goalsGoalId == that.goalsGoalId;
+    return goalMetricsId == that.goalMetricsId && goalGoalId == that.goalGoalId;
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(goalMetricsId, goalsGoalId);
+    return Objects.hash(goalMetricsId, goalGoalId);
   }
 }

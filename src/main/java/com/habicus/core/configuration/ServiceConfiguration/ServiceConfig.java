@@ -36,7 +36,7 @@ public class ServiceConfig {
   }
 
   @Bean
-  UserService userService() {
+  public UserService userService() {
     return new UserService();
   }
 }

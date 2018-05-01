@@ -22,7 +22,6 @@
  */
 package com.habicus.core.model;
 
-import java.sql.Timestamp;
 import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -32,17 +31,22 @@ import javax.persistence.IdClass;
 
 @Entity
 @IdClass(GoalsPK.class)
-public class Goals {
+public class Goal {
 
+  private int usersUserId;
+  private int taskUnitCount;
   private int goalId;
   private String title;
   private String description;
   private String goalInterval;
-  private int usersUserId;
-  private int taskAmount;
-  private Timestamp dueDate;
-  private String labelColor;
   private Double pledgeAmount;
+
+  // UTC Time
+  private long dueDate;
+
+  // TODO: Abstract out these properties elsewhere
+  // https://github.com/Habicus/Habicus-Core-Web/issues/57
+  private String labelColor;
   private String goalComplete;
 
   @Id
@@ -96,22 +100,22 @@ public class Goals {
   }
 
   @Basic
-  @Column(name = "task_amount")
-  public int getTaskAmount() {
-    return taskAmount;
+  @Column(name = "task_unit_count")
+  public int getTaskUnitCount() {
+    return taskUnitCount;
   }
 
-  public void setTaskAmount(int taskAmount) {
-    this.taskAmount = taskAmount;
+  public void setTaskUnitCount(int taskUnitCount) {
+    this.taskUnitCount = taskUnitCount;
   }
 
   @Id
   @Column(name = "due_date")
-  public Timestamp getDueDate() {
+  public long getDueDate() {
     return dueDate;
   }
 
-  public void setDueDate(Timestamp dueDate) {
+  public void setDueDate(long dueDate) {
     this.dueDate = dueDate;
   }
 
@@ -153,10 +157,10 @@ public class Goals {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Goals goals = (Goals) o;
+    Goal goals = (Goal) o;
     return goalId == goals.goalId
         && usersUserId == goals.usersUserId
-        && taskAmount == goals.taskAmount
+        && taskUnitCount == goals.taskUnitCount
         && Objects.equals(title, goals.title)
         && Objects.equals(description, goals.description)
         && Objects.equals(goalInterval, goals.goalInterval)
@@ -175,7 +179,7 @@ public class Goals {
         description,
         goalInterval,
         usersUserId,
-        taskAmount,
+        taskUnitCount,
         dueDate,
         labelColor,
         pledgeAmount,

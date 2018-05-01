@@ -22,9 +22,9 @@
  */
 package com.habicus.core.dao.repository;
 
-import com.habicus.core.model.Goals;
+import com.habicus.core.model.Goal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GoalRepository extends JpaRepository<Goals, Long> {}
+public interface GoalRepository extends JpaRepository<Goal, Long> {}

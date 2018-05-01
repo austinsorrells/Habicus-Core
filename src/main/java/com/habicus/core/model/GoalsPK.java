@@ -72,10 +72,10 @@ public class GoalsPK implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GoalsPK goalsPK = (GoalsPK) o;
-    return goalId == goalsPK.goalId
-        && usersUserId == goalsPK.usersUserId
-        && Objects.equals(dueDate, goalsPK.dueDate);
+    GoalsPK goalPK = (GoalsPK) o;
+    return goalId == goalPK.goalId
+        && usersUserId == goalPK.usersUserId
+        && Objects.equals(dueDate, goalPK.dueDate);
   }
 
   @Override

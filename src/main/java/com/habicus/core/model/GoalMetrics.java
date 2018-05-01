@@ -40,7 +40,7 @@ public class GoalMetrics {
   private String goalInProgress;
   private String moneyMadeOnGoal;
   private Integer timeUntilDueDate;
-  private int goalsGoalId;
+  private int goalGoalId;
 
   @Id
   @Column(name = "goal_metrics_id")
@@ -94,12 +94,12 @@ public class GoalMetrics {
 
   @Id
   @Column(name = "goals_goal_id")
-  public int getGoalsGoalId() {
-    return goalsGoalId;
+  public int getGoalGoalId() {
+    return goalGoalId;
   }
 
-  public void setGoalsGoalId(int goalsGoalId) {
-    this.goalsGoalId = goalsGoalId;
+  public void setGoalGoalId(int goalsGoalId) {
+    this.goalGoalId = goalsGoalId;
   }
 
   @Override
@@ -112,7 +112,7 @@ public class GoalMetrics {
     }
     GoalMetrics that = (GoalMetrics) o;
     return goalMetricsId == that.goalMetricsId
-        && goalsGoalId == that.goalsGoalId
+        && goalGoalId == that.goalGoalId
         && Objects.equals(goalComplete, that.goalComplete)
         && Objects.equals(goalInProgress, that.goalInProgress)
         && Objects.equals(moneyMadeOnGoal, that.moneyMadeOnGoal)
@@ -123,11 +123,6 @@ public class GoalMetrics {
   public int hashCode() {
 
     return Objects.hash(
-        goalMetricsId,
-        goalComplete,
-        goalInProgress,
-        moneyMadeOnGoal,
-        timeUntilDueDate,
-        goalsGoalId);
+        goalMetricsId, goalComplete, goalInProgress, moneyMadeOnGoal, timeUntilDueDate, goalGoalId);
   }
 }

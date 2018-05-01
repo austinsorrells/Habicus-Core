@@ -30,7 +30,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Users {
+public class User {
 
   private int userId;
   private String username;
@@ -107,7 +107,7 @@ public class Users {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Users users = (Users) o;
+    User users = (User) o;
     return userId == users.userId
         && Objects.equals(username, users.username)
         && Objects.equals(password, users.password)
