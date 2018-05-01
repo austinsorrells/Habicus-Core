@@ -25,7 +25,7 @@ package com.habicus.core.service.Goal;
 import com.habicus.core.dao.repository.GoalRepository;
 import com.habicus.core.dao.repository.UserRepository;
 import com.habicus.core.exception.NoGoalsFoundException;
-import com.habicus.core.model.Goals;
+import com.habicus.core.model.Goal;
 import com.habicus.core.service.User.UserService;
 import java.util.List;
 import java.util.Optional;
@@ -46,11 +46,11 @@ public class GoalService {
    * Allows retrieval of a list of goals that can be deserialized into JSON to the client
    *
    * @param userId
-   * @return Returns an array list of {@link Goals}
+   * @return Returns an array list of {@link Goal}
    */
-  public Optional<List<Goals>> retrieveGoalsByUserId(int userId) throws NoGoalsFoundException {
+  public Optional<List<Goal>> retrieveGoalsByUserId(int userId) throws NoGoalsFoundException {
     // TODO: Need to actually do validation on this input userId with the req. token
-    Optional<List<Goals>> userGoals = goalRepository.getGoalsByUsersUserId(userId);
+    Optional<List<Goal>> userGoals = goalRepository.getGoalsByUsersUserId(userId);
     return userGoals;
   }
 }

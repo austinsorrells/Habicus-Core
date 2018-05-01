@@ -39,8 +39,7 @@ public class UserService {
    * @return
    */
   public User retrieveUserByEmail(String email) {
-    return
-        Stream.of(userRepository.findByEmail(email))
+    return Stream.of(userRepository.findByEmail(email))
         .filter(Optional::isPresent)
         .map(Optional::get)
         .findFirst()

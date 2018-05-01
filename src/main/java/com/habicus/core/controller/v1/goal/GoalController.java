@@ -24,12 +24,11 @@ package com.habicus.core.controller.v1.goal;
 
 import com.habicus.core.exception.API.InvalidRequestException;
 import com.habicus.core.exception.NoGoalsFoundException;
-import com.habicus.core.model.Goals;
-import com.habicus.core.model.User;
+import com.habicus.core.model.Goal;
 import com.habicus.core.service.Goal.GoalService;
+import com.habicus.core.service.User.UserService;
 import java.util.List;
 import java.util.Optional;
-import com.habicus.core.service.User.UserService;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,10 +64,10 @@ public class GoalController {
    */
   @ExceptionHandler(NoGoalsFoundException.class)
   @GetMapping("/goal/{userId}")
-  public ResponseEntity<List<Goals>> getGoalsByUserId(@PathVariable("userId") int userId)
+  public ResponseEntity<List<Goal>> getGoalsByUserId(@PathVariable("userId") int userId)
       throws NoGoalsFoundException {
 
-    Optional<List<Goals>> goalList = goalService.retrieveGoalsByUserId(userId);
+    Optional<List<Goal>> goalList = goalService.retrieveGoalsByUserId(userId);
     if (!goalList.isPresent()) {
       throw new InvalidRequestException(
           String.format("No goals found for requesting user: " + userId), HttpStatus.NOT_FOUND);

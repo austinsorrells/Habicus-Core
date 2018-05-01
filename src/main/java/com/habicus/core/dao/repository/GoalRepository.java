@@ -22,29 +22,29 @@
  */
 package com.habicus.core.dao.repository;
 
-import com.habicus.core.model.Goals;
+import com.habicus.core.model.Goal;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GoalRepository extends JpaRepository<Goals, Long> {
+public interface GoalRepository extends JpaRepository<Goal, Long> {
 
   /**
-   * Allows retrieval of all {@link Goals} that are associated with a particular {@link
-   * com.habicus.core.model.Users}
+   * Allows retrieval of all {@link Goal} that are associated with a particular {@link
+   * com.habicus.core.model.User}
    *
    * @param userId
    * @return
    */
-  Optional<List<Goals>> getGoalsByUsersUserId(int userId);
+  Optional<List<Goal>> getGoalsByUsersUserId(int userId);
 
   /**
-   * Get a singular {@link Goals} that is associated with a goal id that is stored as metadata
+   * Get a singular {@link Goal} that is associated with a goal id that is stored as metadata
    *
    * @param goalId
    * @return
    */
-  Optional<Goals> getGoalsByGoalId(int goalId);
+  Optional<Goal> getGoalsByGoalId(int goalId);
 }
