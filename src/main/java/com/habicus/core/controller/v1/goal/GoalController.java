@@ -22,7 +22,9 @@
  */
 package com.habicus.core.controller.v1.goal;
 
+import com.habicus.core.model.User;
 import com.habicus.core.service.Goal.GoalService;
+import com.habicus.core.service.User.UserService;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +37,15 @@ public class GoalController {
   private static final Logger LOGGER = Logger.getLogger(GoalController.class.getName());
 
   private GoalService goalService;
+  private UserService userService;
 
   @Autowired
   public void setGoalService(GoalService goalService) {
     this.goalService = goalService;
+  }
+
+  @Autowired
+  public void setUserService(UserService userService) {
+    this.userService = userService;
   }
 }

@@ -24,6 +24,8 @@ package com.habicus.core.service.User;
 
 import com.habicus.core.dao.repository.UserRepository;
 import com.habicus.core.model.User;
+import java.util.Optional;
+import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserService {
@@ -35,28 +37,13 @@ public class UserService {
    *
    * @param email
    * @return
-   * @throws NonExistentUserException
    */
-  public User retrieveUserByEmail(String email) throws NonExistentUserException {
-    User requestedUser = userRepository.findByEmail(email);
-
-    if (requestedUser == null) {
-      throw new NonExistentUserException("Error: The requested user does not exist", email);
-    }
-    return requestedUser;
-  }
-
-  public class NonExistentUserException extends Exception {
-    public NonExistentUserException() {
-      super();
-    }
-
-    public NonExistentUserException(String err) {
-      super(err);
-    }
-
-    public NonExistentUserException(String err, String email) {
-      super(err + " : " + email);
-    }
+  public User retrieveUserByEmail(String email) {
+    return
+        Stream.of(userRepository.findByEmail(email))
+        .filter(Optional::isPresent)
+        .map(Optional::get)
+        .findFirst()
+        .orElseThrow(() -> new RuntimeException("User does not exist!"));
   }
 }
