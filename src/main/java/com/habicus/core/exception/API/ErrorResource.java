@@ -20,31 +20,45 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.core.dao.repository;
+package com.habicus.core.exception.API;
 
-import com.habicus.core.model.Goal;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
-import java.util.Optional;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface GoalRepository extends JpaRepository<Goal, Long> {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ErrorResource {
+  private String code;
+  private String message;
+  private List<FieldErrorResource> fieldErrors;
 
-  /**
-   * Allows retrieval of all {@link Goal} that are associated with a particular {@link
-   * com.habicus.core.model.User}
-   *
-   * @param userId
-   * @return
-   */
-  Optional<List<Goal>> getGoalsByUsersUserId(int userId);
+  public ErrorResource() {}
 
-  /**
-   * Get a singular {@link Goal} that is associated with a goal id that is stored as metadata
-   *
-   * @param goalId
-   * @return
-   */
-  Optional<Goal> getGoalsByGoalId(int goalId);
+  public ErrorResource(String code, String message) {
+    this.code = code;
+    this.message = message;
+  }
+
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+  public List<FieldErrorResource> getFieldErrors() {
+    return fieldErrors;
+  }
+
+  public void setFieldErrors(List<FieldErrorResource> fieldErrors) {
+    this.fieldErrors = fieldErrors;
+  }
 }

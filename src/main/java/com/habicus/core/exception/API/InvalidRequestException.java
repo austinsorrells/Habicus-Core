@@ -20,31 +20,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.core.dao.repository;
+package com.habicus.core.exception.API;
 
-import com.habicus.core.model.Goal;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.http.HttpStatus;
 
-@Repository
-public interface GoalRepository extends JpaRepository<Goal, Long> {
+@SuppressWarnings("serial")
+public class InvalidRequestException extends RuntimeException {
 
-  /**
-   * Allows retrieval of all {@link Goal} that are associated with a particular {@link
-   * com.habicus.core.model.User}
-   *
-   * @param userId
-   * @return
-   */
-  Optional<List<Goal>> getGoalsByUsersUserId(int userId);
+  HttpStatus statusCode;
 
-  /**
-   * Get a singular {@link Goal} that is associated with a goal id that is stored as metadata
-   *
-   * @param goalId
-   * @return
-   */
-  Optional<Goal> getGoalsByGoalId(int goalId);
+  public InvalidRequestException(String message, HttpStatus statusCode) {
+    super(message);
+    this.statusCode = statusCode;
+  }
+
+  public HttpStatus getStatusCodeError() {
+    return this.statusCode;
+  }
 }
