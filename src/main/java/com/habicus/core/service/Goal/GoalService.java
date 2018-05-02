@@ -23,18 +23,18 @@
 package com.habicus.core.service.Goal;
 
 import com.habicus.core.dao.repository.GoalRepository;
-import com.habicus.core.model.Goal;
-import java.util.List;
+import com.habicus.core.dao.repository.UserRepository;
+import com.habicus.core.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GoalService {
 
+  // Repository definitions
   @Autowired private GoalRepository goalRepository;
+  @Autowired private UserRepository userRepository;
 
-  public List<Goal> retrieveGoalsByUserId(Long id) {
-    List<Goal> goals = goalRepository.findGoalsByUserId(id);
-    return goals;
-  }
+  // Service definitions
+  @Autowired private UserService userService;
 }

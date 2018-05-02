@@ -22,4 +22,28 @@
  */
 package com.habicus.core.service.User;
 
-public class UserService {}
+import com.habicus.core.dao.repository.UserRepository;
+import com.habicus.core.model.User;
+import java.util.Optional;
+import java.util.stream.Stream;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class UserService {
+
+  @Autowired UserRepository userRepository;
+
+  /**
+   * Allows searching for a user by their associated email (PK)
+   *
+   * @param email
+   * @return
+   */
+  public User retrieveUserByEmail(String email) {
+    return
+        Stream.of(userRepository.findByEmail(email))
+        .filter(Optional::isPresent)
+        .map(Optional::get)
+        .findFirst()
+        .orElseThrow(() -> new RuntimeException("User does not exist!"));
+  }
+}

@@ -22,53 +22,55 @@
  */
 package com.habicus.core.model;
 
+import java.util.Objects;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.IdClass;
 
-/** Goal entity that will reference */
 @Entity
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "goal")
+@IdClass(GoalsPK.class)
 public class Goal {
 
-  @Id @GeneratedValue private Long id;
-
+  private int usersUserId;
+  private int taskUnitCount;
+  private int goalId;
   private String title;
-
-  @ManyToOne
-  @JoinColumn(name = "user_id")
-  private User user;
-
   private String description;
+  private String goalInterval;
+  private Double pledgeAmount;
 
-  @XmlElement(name = "accountable")
-  private String accountability;
+  // UTC Time
+  private long dueDate;
 
-  private String interval;
+  // TODO: Abstract out these properties elsewhere
+  // https://github.com/Habicus/Habicus-Core-Web/issues/57
+  private String labelColor;
+  private String goalComplete;
 
+  @Id
+  @Column(name = "goal_id", unique = true)
+  public int getGoalId() {
+    return goalId;
+  }
+
+  public void setGoalId(int goalId) {
+    this.goalId = goalId;
+  }
+
+  @Basic
+  @Column(name = "title")
   public String getTitle() {
     return title;
-  }
-
-  public User getUser() {
-    return this.user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
   }
 
   public void setTitle(String title) {
     this.title = title;
   }
 
+  @Basic
+  @Column(name = "description")
   public String getDescription() {
     return description;
   }
@@ -77,24 +79,110 @@ public class Goal {
     this.description = description;
   }
 
-  public String getAccountability() {
-    return accountability;
+  @Basic
+  @Column(name = "goal_interval")
+  public String getGoalInterval() {
+    return goalInterval;
   }
 
-  public void setAccountability(String accountability) {
-    this.accountability = accountability;
+  public void setGoalInterval(String goalInterval) {
+    this.goalInterval = goalInterval;
   }
 
-  public String getInterval() {
-    return interval;
+  @Id
+  @Column(name = "users_user_id")
+  public int getUsersUserId() {
+    return usersUserId;
   }
 
-  public void setInterval(String interval) {
-    this.interval = interval;
+  public void setUsersUserId(int usersUserId) {
+    this.usersUserId = usersUserId;
+  }
+
+  @Basic
+  @Column(name = "task_unit_count")
+  public int getTaskUnitCount() {
+    return taskUnitCount;
+  }
+
+  public void setTaskUnitCount(int taskUnitCount) {
+    this.taskUnitCount = taskUnitCount;
+  }
+
+  @Id
+  @Column(name = "due_date")
+  public long getDueDate() {
+    return dueDate;
+  }
+
+  public void setDueDate(long dueDate) {
+    this.dueDate = dueDate;
+  }
+
+  @Basic
+  @Column(name = "label_color")
+  public String getLabelColor() {
+    return labelColor;
+  }
+
+  public void setLabelColor(String labelColor) {
+    this.labelColor = labelColor;
+  }
+
+  @Basic
+  @Column(name = "pledge_amount")
+  public Double getPledgeAmount() {
+    return pledgeAmount;
+  }
+
+  public void setPledgeAmount(Double pledgeAmount) {
+    this.pledgeAmount = pledgeAmount;
+  }
+
+  @Basic
+  @Column(name = "goal_complete")
+  public String getGoalComplete() {
+    return goalComplete;
+  }
+
+  public void setGoalComplete(String goalComplete) {
+    this.goalComplete = goalComplete;
   }
 
   @Override
-  public String toString() {
-    return this.getClass().getSimpleName();
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Goal goals = (Goal) o;
+    return goalId == goals.goalId
+        && usersUserId == goals.usersUserId
+        && taskUnitCount == goals.taskUnitCount
+        && Objects.equals(title, goals.title)
+        && Objects.equals(description, goals.description)
+        && Objects.equals(goalInterval, goals.goalInterval)
+        && Objects.equals(dueDate, goals.dueDate)
+        && Objects.equals(labelColor, goals.labelColor)
+        && Objects.equals(pledgeAmount, goals.pledgeAmount)
+        && Objects.equals(goalComplete, goals.goalComplete);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(
+        goalId,
+        title,
+        description,
+        goalInterval,
+        usersUserId,
+        taskUnitCount,
+        dueDate,
+        labelColor,
+        pledgeAmount,
+        goalComplete);
   }
 }
