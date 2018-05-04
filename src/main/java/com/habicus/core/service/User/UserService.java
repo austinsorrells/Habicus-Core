@@ -47,6 +47,7 @@ public class UserService {
         .orElseThrow(() -> new RuntimeException("User does not exist!"));
 =======
 import java.util.Collections;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -57,17 +58,14 @@ import org.springframework.stereotype.Service;
 public class UserService implements UserDetailsService {
   @Autowired private UserRepository userRepository;
 
-  public User FindByUserName(String userName) {
-    return new User();
-  }
-
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    User user = userRepository.findUserByUserName(username);
-    if (user == null) throw new UsernameNotFoundException(username);
+    Optional<User> user = userRepository.findUserByUserName(username);
+
+    User returnedUser = user.orElseThrow(() -> new UsernameNotFoundException(username));
 
     return new org.springframework.security.core.userdetails.User(
-        user.getUserName(), user.getEncryptedPassword(), Collections.emptyList());
+        returnedUser.getUserName(), returnedUser.getEncryptedPassword(), Collections.emptyList());
   }
 
   public void save(User user) {

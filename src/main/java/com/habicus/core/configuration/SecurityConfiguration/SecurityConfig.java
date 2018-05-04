@@ -20,15 +20,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus.core.dao.repository;
+package com.habicus.core.configuration.SecurityConfiguration;
 
-import com.habicus.core.model.User;
-import java.util.Optional;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-  Optional<User> findByEmail(String email);
-  Optional<User> findUserByUserName(String userName);
+@Configuration
+public class SecurityConfig {
+  @Bean
+  public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 }

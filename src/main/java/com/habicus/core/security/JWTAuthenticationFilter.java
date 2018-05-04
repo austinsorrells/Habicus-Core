@@ -32,8 +32,8 @@ import com.habicus.core.model.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Logger;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +46,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
   private AuthenticationManager authenticationManager;
+  private static final Logger LOGGER = Logger.getLogger(JWTAuthenticationFilter.class.getName());
 
   public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
@@ -59,8 +60,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
       return authenticationManager.authenticate(
           new UsernamePasswordAuthenticationToken(
-              creds.getUserName(), creds.getEncryptedPassword(), new ArrayList<>()));
+              creds.getUserName(), creds.getEncryptedPassword(), null));
     } catch (IOException e) {
+      LOGGER.warning("Problem attempting authentication for request.");
       throw new RuntimeException(e);
     }
   }
@@ -69,7 +71,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
   protected void successfulAuthentication(
       HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth)
       throws IOException, ServletException {
-
+    LOGGER.info("Successful authentication, generating token");
     String token =
         Jwts.builder()
             .setSubject(

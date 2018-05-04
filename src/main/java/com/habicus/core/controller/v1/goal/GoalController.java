@@ -26,6 +26,8 @@ import com.habicus.core.exception.API.InvalidRequestException;
 import com.habicus.core.exception.NoGoalsFoundException;
 import com.habicus.core.model.Goal;
 import com.habicus.core.service.Goal.GoalService;
+import java.security.Principal;
+import java.text.MessageFormat;
 import com.habicus.core.service.User.UserService;
 import java.util.List;
 import java.util.Optional;
@@ -62,6 +64,15 @@ public class GoalController {
    * @return
    * @throws NoGoalsFoundException
    */
+  @RequestMapping(
+    value = "/{id}",
+    method = RequestMethod.GET,
+    produces = {MediaType.APPLICATION_JSON}
+  )
+  public List<Goal> retrieveUserGoals(@PathVariable(value = "id") Long id, Principal principal) {
+    LOGGER.info("Principal :" + principal.getName());
+    LOGGER.info(MessageFormat.format("Retrieving goals associated with user {0} ", id));
+    return goalService.retrieveGoalsByUserId(id);
   @ExceptionHandler(NoGoalsFoundException.class)
   @GetMapping("/goal/{userId}")
   public ResponseEntity<List<Goal>> getGoalsByUserId(@PathVariable("userId") int userId)

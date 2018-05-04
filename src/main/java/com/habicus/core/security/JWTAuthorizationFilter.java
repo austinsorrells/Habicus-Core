@@ -28,7 +28,7 @@ import static com.habicus.core.security.SecurityConstants.TOKEN_PREFIX;
 
 import io.jsonwebtoken.Jwts;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.logging.Logger;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +39,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+
+  private static final Logger LOGGER = Logger.getLogger(JWTAuthorizationFilter.class.getName());
 
   public JWTAuthorizationFilter(AuthenticationManager authManager) {
     super(authManager);
@@ -52,6 +54,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     if (header == null || !header.startsWith(TOKEN_PREFIX)) {
       chain.doFilter(req, res);
+      LOGGER.warning("No authorization token present");
       return;
     }
 
@@ -64,6 +67,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
   private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
     String token = request.getHeader(HEADER_STRING);
     if (token != null) {
+      LOGGER.info("Checking auth token");
       // parse the token.
       String user =
           Jwts.parser()
@@ -73,10 +77,10 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
               .getSubject();
 
       if (user != null) {
-        return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+        return new UsernamePasswordAuthenticationToken(user, null, null);
       }
-      return null;
     }
+    LOGGER.warning("Did not find user");
     return null;
   }
 }
