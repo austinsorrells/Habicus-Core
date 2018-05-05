@@ -34,11 +34,11 @@ git clone https://github.com/Habicus/Habicus-Core-Web habicus-core-web && cd hab
 
 Run the server: `gradle spotlessApply && gradle dev`. (See below for more advanced config)
 
-## Usage example
+## Background
 
 Are you tired of writing down goals only to fail days or weeks later? Habicus is a P2P accountability tool that puts financials on the line to ensure you achieve your goals at the interval you desire. Need an extra boost? Habicus enables you to add an additional verifier to your account so they can mark off that your goal for that day was completed in time. Failing to do so, the accountability user will receive the funds you pledged to that goal. 
 
-## Development setup
+## Development Setup
 
 In order to get the server running, run the following command:
 ```
