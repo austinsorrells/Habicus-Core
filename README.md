@@ -46,6 +46,11 @@ All files must have the proper formatting + headers, if you get a verification f
 gradle spotlessApply
 ```
 
+It is highly recommended to setup an alias for all development as follows: 
+```
+alias qb='gradle spotlessApply && gradle dev'
+```
+
 Profiles are currently setup in the application property files in the `resources` directory
 
 ## Test Database
