@@ -2,9 +2,9 @@ DROP TABLE IF EXISTS `habicus`.`goal`;
 DROP TABLE IF EXISTS `habicus`.`user`;
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int(11) unsigned NOT NULL,
+  `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `dob` datetime DEFAULT NULL,
   `gender` varchar(25) DEFAULT NULL,

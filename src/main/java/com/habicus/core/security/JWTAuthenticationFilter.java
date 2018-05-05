@@ -48,7 +48,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
   private AuthenticationManager authenticationManager;
   private static final Logger LOGGER = Logger.getLogger(JWTAuthenticationFilter.class.getName());
 
-  public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+  JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
   }
 
@@ -56,11 +56,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
   public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
       throws AuthenticationException {
     try {
-      User creds = new ObjectMapper().readValue(req.getInputStream(), User.class);
+      User user = new ObjectMapper().readValue(req.getInputStream(), User.class);
 
       return authenticationManager.authenticate(
-          new UsernamePasswordAuthenticationToken(
-              creds.getUserName(), creds.getEncryptedPassword(), null));
+          new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), null));
     } catch (IOException e) {
       LOGGER.warning("Problem attempting authentication for request.");
       throw new RuntimeException(e);

@@ -59,7 +59,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     }
 
     UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
-
     SecurityContextHolder.getContext().setAuthentication(authentication);
     chain.doFilter(req, res);
   }
@@ -68,7 +67,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     String token = request.getHeader(HEADER_STRING);
     if (token != null) {
       LOGGER.info("Checking auth token");
-      // parse the token.
       String user =
           Jwts.parser()
               .setSigningKey(SECRET.getBytes())

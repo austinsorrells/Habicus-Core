@@ -24,10 +24,12 @@ package com.habicus.core.service.User;
 
 import com.habicus.core.dao.repository.UserRepository;
 import com.habicus.core.model.User;
-<<<<<<< master
+import java.util.Collections;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class UserService {
 
@@ -45,31 +47,22 @@ public class UserService {
         .map(Optional::get)
         .findFirst()
         .orElseThrow(() -> new RuntimeException("User does not exist!"));
-=======
-import java.util.Collections;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+  }
 
-@Service("UserService")
-public class UserService implements UserDetailsService {
-  @Autowired private UserRepository userRepository;
-
-  @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    Optional<User> user = userRepository.findUserByUserName(username);
-
-    User returnedUser = user.orElseThrow(() -> new UsernameNotFoundException(username));
-
-    return new org.springframework.security.core.userdetails.User(
-        returnedUser.getUserName(), returnedUser.getEncryptedPassword(), Collections.emptyList());
+  public User FindByUserName(String userName) {
+    return new User();
   }
 
   public void save(User user) {
     userRepository.save(user);
->>>>>>> Adding initial security
+  }
+
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    Optional<User> user = userRepository.findUserByUsername(username);
+
+    User returnedUser = user.orElseThrow(() -> new UsernameNotFoundException(username));
+
+    return new org.springframework.security.core.userdetails.User(
+        returnedUser.getUsername(), returnedUser.getPassword(), Collections.emptyList());
   }
 }

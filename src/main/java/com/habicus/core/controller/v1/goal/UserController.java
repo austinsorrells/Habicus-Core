@@ -22,6 +22,7 @@
  */
 package com.habicus.core.controller.v1.goal;
 
+import com.habicus.core.dao.repository.UserRepository;
 import com.habicus.core.model.User;
 import com.habicus.core.service.User.UserService;
 import java.util.logging.Logger;
@@ -36,9 +37,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/user")
 public class UserController {
   private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
+
   private BCryptPasswordEncoder bCryptPasswordEncoder;
 
   private UserService userService;
+
+  private UserRepository userRepository;
 
   @Autowired
   public UserController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
@@ -46,10 +50,15 @@ public class UserController {
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
-  @PostMapping("/sign-up")
+  @Autowired
+  public void setUserRepository(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
+
+  @PostMapping("/registration")
   public void signUp(@RequestBody User user) {
-    user.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getEncryptedPassword()));
-    userService.save(user);
+    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    userRepository.save(user);
   }
 
   @Autowired
