@@ -23,7 +23,16 @@ Habicus is a platform for people who have a desire to reach their goals. Habicus
 ## Installation
 
 Windows, OS X, Linux
-(In-Progress)
+
+Clone the repository:
+```
+git clone https://github.com/Habicus/Habicus-Core-Web habicus-core-web && cd habicus-core-web
+```
+
+- Setup a local running MySQL instance with the username of: `root`
+- Set an environment variable under `MYSQL_PASSWORD` to be picked up by the development profile
+
+Run the server: `gradle spotlessApply && gradle dev`. (See below for more advanced config)
 
 ## Usage example
 
