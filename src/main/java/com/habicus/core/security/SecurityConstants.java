@@ -20,14 +20,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.habicus;
+package com.habicus.core.security;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class CoreApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(CoreApplication.class, args);
-  }
+class SecurityConstants {
+  static final String SECRET = "SecretKeyToGenJWTs";
+  static final long EXPIRATION_TIME = 864_000_000; // 10 days
+  static final String TOKEN_PREFIX = "Bearer ";
+  static final String HEADER_STRING = "Authorization";
+  static final String SIGN_UP_URL = "/api/v1/user/registration";
 }

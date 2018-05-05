@@ -27,6 +27,7 @@ import com.habicus.core.exception.NoGoalsFoundException;
 import com.habicus.core.model.Goal;
 import com.habicus.core.service.Goal.GoalService;
 import com.habicus.core.service.User.UserService;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -55,6 +56,11 @@ public class GoalController {
     this.goalService = goalService;
   }
 
+  @Autowired
+  public void setUserService(UserService userService) {
+    this.userService = userService;
+  }
+
   /**
    * Allows retrieval by a single userId for getting goals
    *
@@ -64,8 +70,10 @@ public class GoalController {
    */
   @ExceptionHandler(NoGoalsFoundException.class)
   @GetMapping("/goal/{userId}")
-  public ResponseEntity<List<Goal>> getGoalsByUserId(@PathVariable("userId") int userId)
-      throws NoGoalsFoundException {
+  public ResponseEntity<List<Goal>> retrieveUserGoals(
+      @PathVariable(value = "id") int userId, Principal principal) throws NoGoalsFoundException {
+
+    LOGGER.info("Current querying for all goals on user: " + principal.getName());
 
     Optional<List<Goal>> goalList = goalService.retrieveGoalsByUserId(userId);
     if (!goalList.isPresent()) {
@@ -73,10 +81,5 @@ public class GoalController {
           String.format("No goals found for requesting user: " + userId), HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity<>(goalList.get(), HttpStatus.OK);
-  }
-
-  @Autowired
-  public void setUserService(UserService userService) {
-    this.userService = userService;
   }
 }
