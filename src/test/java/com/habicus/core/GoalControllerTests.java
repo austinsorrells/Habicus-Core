@@ -41,7 +41,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestPropertySource(locations = "classpath:application-development.properties")
-public class SecurityTests {
+public class GoalControllerTests {
   @Autowired private MockMvc mvc;
   private final String BASEURL = "/api/v1/goals";
 
