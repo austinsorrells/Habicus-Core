@@ -36,6 +36,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import static org.hamcrest.Matchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -44,13 +45,32 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 public class GoalControllerTests {
   @Autowired private MockMvc mvc;
   private final String BASEURL = "/api/v1/goals";
+  private static final String USER = "testerUser1";
 
   @Test
-  @WithUserDetails("testerUser1")
+  @WithUserDetails(USER)
   public void getGoalsForSpecificUser() throws Exception {
     this.mvc
         .perform(get(this.BASEURL).accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(MockMvcResultMatchers.jsonPath("$[0].description").value("Tester Description"));
+  }
+
+  @Test
+  @WithUserDetails(USER)
+  public void getGoalsForSpecificUserInvalid() throws Exception {
+    this.mvc
+            .perform(get(this.BASEURL).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$[0].description", is(not("BAD Description"))));
+  }
+
+  @Test
+  @WithUserDetails(USER)
+  public void verifyGoalCount() throws Exception {
+    this.mvc
+            .perform(get(this.BASEURL).accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(1)));
   }
 }
